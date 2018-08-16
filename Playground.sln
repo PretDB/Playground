@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "3D", "3D\3D.csproj", "{8824
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "卡尔曼滤波", "卡尔曼滤波\卡尔曼滤波.csproj", "{C07E2EF8-D21F-4A96-AE05-8DE335AFF4FB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PID", "PID\PID.csproj", "{09B10157-C3C6-4AA0-8B59-F195F165FC4C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AStar", "AStart\AStar.csproj", "{BA568B80-2988-460E-9210-1A561DA3F152}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{C07E2EF8-D21F-4A96-AE05-8DE335AFF4FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C07E2EF8-D21F-4A96-AE05-8DE335AFF4FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C07E2EF8-D21F-4A96-AE05-8DE335AFF4FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09B10157-C3C6-4AA0-8B59-F195F165FC4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09B10157-C3C6-4AA0-8B59-F195F165FC4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09B10157-C3C6-4AA0-8B59-F195F165FC4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09B10157-C3C6-4AA0-8B59-F195F165FC4C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA568B80-2988-460E-9210-1A561DA3F152}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA568B80-2988-460E-9210-1A561DA3F152}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA568B80-2988-460E-9210-1A561DA3F152}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA568B80-2988-460E-9210-1A561DA3F152}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

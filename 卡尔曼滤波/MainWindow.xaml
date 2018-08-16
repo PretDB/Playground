@@ -7,6 +7,18 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+
+        <Canvas Name="canvas" Grid.Row="0"/>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="1">
+            <Button Name="Draw" Content="Draw" Width="70" Click="Draw_Click"/>
+        </StackPanel>
     </Grid>
 </Window>
