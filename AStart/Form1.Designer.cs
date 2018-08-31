@@ -168,6 +168,8 @@
             // checkBoxShowProgress
             // 
             this.checkBoxShowProgress.AutoSize = true;
+            this.checkBoxShowProgress.Checked = true;
+            this.checkBoxShowProgress.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBoxShowProgress.Location = new System.Drawing.Point(757, 317);
             this.checkBoxShowProgress.Name = "checkBoxShowProgress";
             this.checkBoxShowProgress.Size = new System.Drawing.Size(48, 16);

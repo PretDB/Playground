@@ -91,6 +91,8 @@ namespace AStart
                     this.gridStates[a, b] = GridState.Empty;
                 }
             }
+            this.startPoint = Point.Empty;
+            this.termPoint = Point.Empty;
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -166,10 +168,22 @@ namespace AStart
                     moveCost.Add(new Point(c, r), float.PositiveInfinity);
                 }
             }
-            // moveCost.Add(this.startPoint, 0f);
             distance.Add(this.startPoint, this.Distance(this.startPoint, this.termPoint));
 
+            moveCost[this.startPoint] = 0f;
             this.StartTrace(openList, closeList, parent, moveCost, distance);
+            if (this.checkBoxShowProgress.Checked)
+            {
+                if (parent.ContainsKey(this.termPoint))
+                {
+                    Point p = parent[this.termPoint];
+                    while (p != this.startPoint)
+                    {
+                        this.SetGridState(p, GridState.Trace);
+                        p = parent[p];
+                    }
+                }
+            }
         }
 
         private void StartTrace(Stack<Point> openList, Stack<Point> closeList, Dictionary<Point, Point> parent, Dictionary<Point, float> moveCost, Dictionary<Point, float> distance)
@@ -183,9 +197,15 @@ namespace AStart
                     return;
                 }
                 HashSet<Point> neibors = this.GetNeibors(c);
+                Dictionary<Point, float> nd = new Dictionary<Point, float>();
+                foreach(Point p in neibors)
+                {
+                    nd.Add(p, this.Distance(p, this.termPoint));
+                }
+                var neighbors = from node in nd orderby node.Value descending select node.Key;
                 closeList.Push(c);
 
-                foreach(Point n in neibors)
+                foreach(Point n in neighbors)
                 {
                     if(this.gridStates[n.Y, n.X] == GridState.Occupied || closeList.Contains(n))
                     {
@@ -195,26 +215,30 @@ namespace AStart
                     {
                         openList.Push(n);
                     }
-                    else if(moveCost[c] + this.CostOf(c, n) > moveCost[n])
+                    if (moveCost[c] + this.CostOf(c, n) > moveCost[n])  // Judgement of G value
                     {
                         continue;
                     }
-                    if(parent.Keys.Contains(n))
-                    {
-                        parent[n] = c;
-                    }
                     else
                     {
-                        parent.Add(n, c);
-                    }
-                    moveCost[n] = moveCost[c] + this.CostOf(c, n);
-                    if (distance.Keys.Contains(n))
-                    {
-                        distance[n] = this.Distance(n, this.termPoint);
-                    }
-                    else
-                    {
-                        distance.Add(n, this.Distance(n, this.termPoint));
+                        if (parent.Keys.Contains(n))
+                        {
+                            parent[n] = c;
+                        }
+                        else
+                        {
+                            parent.Add(n, c);
+                        }
+                        moveCost[n] = moveCost[c] + this.CostOf(c, n);
+
+                        if (distance.Keys.Contains(n))
+                        {
+                            distance[n] = this.Distance(n, this.termPoint);
+                        }
+                        else
+                        {
+                            distance.Add(n, this.Distance(n, this.termPoint));
+                        }
                     }
                 }
             }
