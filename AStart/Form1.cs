@@ -196,7 +196,7 @@ namespace AStart
                 {
                     return;
                 }
-                HashSet<Point> neibors = this.GetNeibors(c);
+                HashSet<Point> neibors = this.GetNeibors(c, method:8);
                 Dictionary<Point, float> nd = new Dictionary<Point, float>();
                 foreach(Point p in neibors)
                 {

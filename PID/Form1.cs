@@ -68,6 +68,7 @@ namespace PID
 
             this.pidController.setValue = this.setValue;
             this.pidController.currentValue = this.currentValue;
+            this.pidController.interval = this.timerGlobal.Interval / 1000d;
             this.currentValue = this.pidController.outputValue;
             this.chart1.Series["action"].Points.Add(this.currentValue);
 
@@ -187,24 +188,25 @@ namespace PID
 
         public double setValue = 0d;
         public double currentValue = 0d;
-        public double interval = 1;
+        public double interval;
         public double outputValue
         {
             get
             {
                 double error = this.setValue - this.currentValue;
-                this.intergrate += error;
+                this.intergrate += error + this.interval;
                 return this.p * error + this.i * this.intergrate + this.d * error / this.interval;
             }
         }
 
         private double intergrate = 0d;
 
-        public PIDController(double p, double i, double d)
+        public PIDController(double p, double i, double d, double interval = 1)
         {
             this.p = p;
             this.i = i;
             this.d = d;
+            this.interval = interval;
         }
     }
 }
